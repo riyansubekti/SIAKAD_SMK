@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/row_nilai"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?android:attr/selectableItemBackground"
+    android:orientation="horizontal"
+    android:gravity="center">
+
+    <TextView
+        android:id="@+id/txtNomer"
+        android:layout_width="25dp"
+        android:layout_height="wrap_content"
+        android:text="100"
+        android:layout_marginHorizontal="5dp"
+        android:textAlignment="center"/>
+
+    <TextView
+        android:id="@+id/txtNamaMapel"
+        android:layout_marginHorizontal="5dp"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:text="Bahasa Indonesia"
+        android:maxLines="3"/>
+
+    <TextView
+        android:id="@+id/txtNilaiTugas"
+        android:layout_marginHorizontal="5dp"
+        android:layout_width="25dp"
+        android:layout_height="wrap_content"
+        android:text="100"
+        android:textAlignment="center"/>
+
+    <TextView
+        android:id="@+id/txtNilaiUTS"
+        android:layout_marginHorizontal="5dp"
+        android:layout_width="25dp"
+        android:layout_height="wrap_content"
+        android:text="100"
+        android:textAlignment="center"/>
+
+    <TextView
+        android:id="@+id/txtNilaiUAS"
+        android:layout_marginHorizontal="5dp"
+        android:layout_width="25dp"
+        android:layout_height="wrap_content"
+        android:text="100"
+        android:maxLines="2"
+        android:textAlignment="center"/>
+
+    <TextView
+        android:id="@+id/txtNilaiTotal"
+        android:layout_marginHorizontal="5dp"
+        android:layout_width="25dp"
+        android:layout_height="wrap_content"
+        android:text="100"
+        android:maxLines="2"
+        android:textAlignment="center"/>
+
+    <TextView
+        android:id="@+id/txtNilaiKKM"
+        android:layout_marginHorizontal="5dp"
+        android:layout_width="25dp"
+        android:layout_height="wrap_content"
+        android:text="100"
+        android:maxLines="2"
+        android:textAlignment="center"/>
+
+</LinearLayout>

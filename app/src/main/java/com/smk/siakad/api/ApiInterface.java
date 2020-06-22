@@ -1,6 +1,7 @@
 package com.smk.siakad.api;
 
 import com.smk.siakad.model.Login;
+import com.smk.siakad.model.Nilai;
 import com.smk.siakad.model.Siswa;
 
 import java.util.List;
@@ -16,4 +17,10 @@ public interface ApiInterface {
 
     @GET("login.php")
     Call<Login> performUserLogin(@Query("username") String username, @Query("password") String Password);
+
+    @GET("get_siswa.php")
+    Call<List<Siswa>> loadSiswa(@Query("role") String role);
+
+    @GET("get_nilai.php")
+    Call<List<Nilai>> getNilai(@Query("id_siswa") String id_siswa);
 }

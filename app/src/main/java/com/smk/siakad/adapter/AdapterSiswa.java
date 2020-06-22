@@ -81,8 +81,8 @@ public class AdapterSiswa extends RecyclerView.Adapter<AdapterSiswa.MyViewHolder
         @SuppressLint("CheckResult")
         @Override
         public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-            holder.mID.setText(siswa.get(0).getId_siswa());
-            holder.mNama.setText(siswa.get(0).getNama());
+            holder.mID.setText(siswa.get(position).getId_siswa());
+            holder.mNama.setText(siswa.get(position).getNama());
 
             RequestOptions requestOptions = new RequestOptions();
             requestOptions.skipMemoryCache(true);

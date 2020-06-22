@@ -7,10 +7,11 @@ import android.os.Bundle;
 import com.smk.siakad.BerandaFragment;
 import com.smk.siakad.PrefConfig;
 import com.smk.siakad.R;
+import com.smk.siakad.SiswaFragment;
 import com.smk.siakad.api.ApiClient;
 import com.smk.siakad.api.ApiInterface;
 
-public class LoginActivity extends AppCompatActivity implements LoginFragment.OnLoginFormActivityListener, BerandaFragment.OnLogoutListener {
+public class LoginActivity extends AppCompatActivity implements LoginFragment.OnLoginFormActivityListener, SiswaFragment.OnLogoutListener {
 
     public static PrefConfig prefConfig;
     public static ApiInterface apiInterface;
@@ -27,7 +28,7 @@ public class LoginActivity extends AppCompatActivity implements LoginFragment.On
                 return;
             }
             if (prefConfig.readLoginStatus()) {
-                getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, new BerandaFragment()).commit();
+                getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, new SiswaFragment()).commit();
             } else {
                 getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, new LoginFragment()).commit();
             }
@@ -37,7 +38,7 @@ public class LoginActivity extends AppCompatActivity implements LoginFragment.On
     @Override
     public void performLogin(String role) {
         prefConfig.writeName(role);
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new BerandaFragment()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new SiswaFragment()).commit();
     }
 
     @Override

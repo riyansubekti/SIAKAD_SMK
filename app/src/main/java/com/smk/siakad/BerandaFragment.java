@@ -19,11 +19,11 @@ public class BerandaFragment extends Fragment {
 
     private TextView txtRole;
     private Button btnLogout;
-    OnLogoutListener logoutListener;
-
-    public interface OnLogoutListener{
-        public void logoutPerformed();
-    }
+//    OnLogoutListener logoutListener;
+//
+//    public interface OnLogoutListener{
+//        public void logoutPerformed();
+//    }
 
     public BerandaFragment() {
         // Required empty public constructor
@@ -37,20 +37,20 @@ public class BerandaFragment extends Fragment {
         btnLogout = view.findViewById(R.id.btnLogout);
         txtRole = view.findViewById(R.id.txtROLE);
         txtRole.setText("Selamat Datang "+ LoginActivity.prefConfig.readName());
-
-        btnLogout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                logoutListener.logoutPerformed();
-            }
-        });
+//
+//        btnLogout.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                logoutListener.logoutPerformed();
+//            }
+//        });
         return view;
     }
 
-    @Override
-    public void onAttach(@NonNull Context context) {
-        super.onAttach(context);
-        Activity activity = (Activity) context;
-        logoutListener = (OnLogoutListener) activity;
-    }
+//    @Override
+//    public void onAttach(@NonNull Context context) {
+//        super.onAttach(context);
+//        Activity activity = (Activity) context;
+//        logoutListener = (OnLogoutListener) activity;
+//    }
 }
