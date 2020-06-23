@@ -9,11 +9,9 @@ import android.widget.Filterable;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.smk.siakad.CustomFilter;
 import com.smk.siakad.R;
 import com.smk.siakad.filter.FilterNilaiSiswa;
 import com.smk.siakad.model.Nilai;
-import com.smk.siakad.model.Siswa;
 
 import java.util.ArrayList;
 import java.util.List;

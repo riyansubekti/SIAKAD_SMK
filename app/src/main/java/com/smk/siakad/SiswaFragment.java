@@ -22,6 +22,7 @@ import com.smk.siakad.api.ApiClient;
 import com.smk.siakad.api.ApiInterface;
 import com.smk.siakad.login.LoginActivity;
 import com.smk.siakad.model.Siswa;
+import com.smk.siakad.siswa.JadwalActivity;
 import com.smk.siakad.siswa.NilaiActivity;
 
 import java.util.List;
@@ -73,7 +74,14 @@ public class SiswaFragment extends Fragment {
         cvDaftar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getActivity(), MainActivity.class));
+                startActivity(new Intent(getActivity(), JadwalActivity.class));
+            }
+        });
+
+        cvJadwal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), JadwalSiswaActivity.class));
             }
         });
 
