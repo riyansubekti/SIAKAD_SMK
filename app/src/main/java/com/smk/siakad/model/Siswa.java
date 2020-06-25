@@ -5,6 +5,8 @@ import com.google.gson.annotations.SerializedName;
 public class Siswa {
     @SerializedName("id_siswa")
     private String id_siswa;
+    @SerializedName("id_guru")
+    private String id_guru;
     @SerializedName("id_login")
     private String id_login;
     @SerializedName("nama")
@@ -28,6 +30,14 @@ public class Siswa {
 
     public void setId_siswa(String id_siswa) {
         this.id_siswa = id_siswa;
+    }
+
+    public String getId_guru() {
+        return id_guru;
+    }
+
+    public void setId_guru(String id_guru) {
+        this.id_guru = id_guru;
     }
 
     public String getId_login() {

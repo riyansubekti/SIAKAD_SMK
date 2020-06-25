@@ -63,7 +63,7 @@ public class HariFragment extends Fragment {
             @Override
             public void onResponse(Call<List<JadwalSiswa>> call, Response<List<JadwalSiswa>> response) {
                 jadwalSiswaList = response.body();
-                Log.i(JadwalSiswaActivity.class.getSimpleName(), response.body().toString());
+                Log.i(JadwalActivity.class.getSimpleName(), response.body().toString());
                 adapterJadwalSiswa = new AdapterJadwalSiswa(jadwalSiswaList, getActivity(), listener);
                 recyclerView.setAdapter(adapterJadwalSiswa);
                 adapterJadwalSiswa.getFilter().filter(hari);

@@ -20,7 +20,7 @@ public interface ApiInterface {
     Call<Login> performUserLogin(@Query("username") String username, @Query("password") String Password);
 
     @GET("get_siswa.php")
-    Call<List<Siswa>> loadSiswa(@Query("role") String role);
+    Call<List<Siswa>> loadSiswa(@Query("role") String role, @Query("id_login") String id_login);
 
     @GET("get_nilai.php")
     Call<List<Nilai>> getNilai(@Query("id_siswa") String id_siswa);

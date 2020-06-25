@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.smk.siakad.api.ApiClient;
 import com.smk.siakad.api.ApiInterface;
@@ -31,7 +32,8 @@ import java.util.List;
 public class SiswaFragment extends Fragment {
 
     private List<Siswa> siswa;
-    private TextView txtNamaUser;
+    private TextView txtNamaUser, txtTagihan, txtNIS;
+    private String id_login, role;
 
     private OnLogoutListener logoutListener;
 
@@ -54,15 +56,19 @@ public class SiswaFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_siswa, container, false);
         txtNamaUser = view.findViewById(R.id.txtNamaUser);
+        txtTagihan = view.findViewById(R.id.txtTagihan);
+        txtNIS = view.findViewById(R.id.txtNIS);
         CardView cvNilai = view.findViewById(R.id.cvNilai);
         CardView cvJadwal = view.findViewById(R.id.cvJadwal);
-        CardView cvDaftar = view.findViewById(R.id.cvDaftarUlang);
+        CardView cvProfil = view.findViewById(R.id.cvProfil);
         CardView cvLogout = view.findViewById(R.id.cvLogout);
         TextView txtNilai = view.findViewById(R.id.txtNilai);
         TextView txtJadwal = view.findViewById(R.id.txtJadwal);
-        TextView txtDaftar = view.findViewById(R.id.txtDaftarUlang);
         TextView txtLogout = view.findViewById(R.id.txtLogout);
-        ImageView ivDaftar = view.findViewById(R.id.ivDaftarUlang);
+        ImageView ivLogout = view.findViewById(R.id.ivLogout);
+
+        role = LoginActivity.prefConfig.readRole();
+        id_login = LoginActivity.prefConfig.readID();
 
         cvNilai.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,7 +77,7 @@ public class SiswaFragment extends Fragment {
             }
         });
 
-        cvDaftar.setOnClickListener(new View.OnClickListener() {
+        cvProfil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getActivity(), JadwalActivity.class));
@@ -92,31 +98,48 @@ public class SiswaFragment extends Fragment {
             }
         });
 
-        String role = LoginActivity.prefConfig.readName();
         if (role.equals("guru")) {
             txtNilai.setText("Data Nilai");
-            txtJadwal.setText("Jadwal Mengajar");
-            txtDaftar.setText("Data Siswa");
-            ivDaftar.setImageDrawable(getResources().getDrawable(R.drawable.student));
+            txtJadwal.setText("Data Jadwal");
+            txtLogout.setText("Daftar Ulang");
+            ivLogout.setImageDrawable(getResources().getDrawable(R.drawable.repeat));
         }
+        return view;
+    }
 
+    public void getSiswa() {
         ApiInterface apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
-
-        Call<List<Siswa>> call =  apiInterface.loadSiswa(role);
+        role = LoginActivity.prefConfig.readRole();
+        id_login = LoginActivity.prefConfig.readID();
+        Call<List<Siswa>> call =  apiInterface.loadSiswa(role, id_login);
         call.enqueue(new Callback<List<Siswa>>() {
             @Override
             public void onResponse(Call<List<Siswa>> call, Response<List<Siswa>> response) {
                 siswa = response.body();
-                txtNamaUser.setText(siswa.get(0).getNama());
+                if (role.equals("siswa")) {
+                    txtNamaUser.setText(siswa.get(0).getNama());
+                    txtTagihan.setText(siswa.get(0).getTagihan());
+                    txtNIS.setText(siswa.get(0).getId_siswa());
+                } else {
+                    txtNamaUser.setText(siswa.get(0).getNama());
+                    txtNIS.setText(siswa.get(0).getId_guru());
+                }
             }
 
             @Override
             public void onFailure(Call<List<Siswa>> call, Throwable t) {
-
+                Toast.makeText(getActivity(), "rp :"+
+                                t.getMessage().toString(),
+                        Toast.LENGTH_SHORT).show();
+                System.out.println("okeh"+t);
             }
         });
+    }
 
-        return view;
+    @Override
+    public void onResume() {
+        super.onResume();
+        getSiswa();
     }
 
     @Override

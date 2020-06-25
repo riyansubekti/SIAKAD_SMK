@@ -9,11 +9,18 @@ public class Login {
     @SerializedName("role")
     private String Role;
 
+    @SerializedName("id_login")
+    private String id_login;
+
     public String getResponse() {
         return Response;
     }
 
     public String getRole() {
         return Role;
+    }
+
+    public String getId_login() {
+        return id_login;
     }
 }

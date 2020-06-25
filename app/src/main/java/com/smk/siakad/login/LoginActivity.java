@@ -36,15 +36,17 @@ public class LoginActivity extends AppCompatActivity implements LoginFragment.On
     }
 
     @Override
-    public void performLogin(String role) {
-        prefConfig.writeName(role);
+    public void performLogin(String role, String id_login) {
+        prefConfig.writeRole(role);
+        prefConfig.writeID(id_login);
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new SiswaFragment()).commit();
     }
 
     @Override
     public void logoutPerformed() {
         prefConfig.writeLoginStatus(false);
-        prefConfig.writeName("User");
+        prefConfig.writeRole("Role");
+        prefConfig.writeID("Id_login");
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new LoginFragment()).commit();
     }
 }

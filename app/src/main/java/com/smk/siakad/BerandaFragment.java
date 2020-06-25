@@ -33,7 +33,7 @@ public class BerandaFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_beranda, container, false);
         btnLogout = view.findViewById(R.id.btnLogout);
         txtRole = view.findViewById(R.id.txtROLE);
-        txtRole.setText("Selamat Datang "+ LoginActivity.prefConfig.readName());
+        txtRole.setText("Selamat Datang "+ LoginActivity.prefConfig.readRole());
 //
 //        btnLogout.setOnClickListener(new View.OnClickListener() {
 //            @Override

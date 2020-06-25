@@ -72,7 +72,7 @@ public class JadwalActivity extends AppCompatActivity {
             public void onResponse(Call<List<JadwalSiswa>> call, Response<List<JadwalSiswa>> response) {
                 progressBar.setVisibility(View.GONE);
                 jadwalSiswaList = response.body();
-                Log.i(JadwalSiswaActivity.class.getSimpleName(), response.body().toString());
+                Log.i(JadwalActivity.class.getSimpleName(), response.body().toString());
                 adapterJadwalSiswa = new AdapterJadwalSiswa(jadwalSiswaList, JadwalActivity.this, listener);
                 recyclerView.setAdapter(adapterJadwalSiswa);
                 adapterJadwalSiswa.getFilter().filter("Selasa");
