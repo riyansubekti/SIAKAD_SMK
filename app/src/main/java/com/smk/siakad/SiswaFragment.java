@@ -15,7 +15,9 @@ import retrofit2.Response;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,6 +27,7 @@ import com.smk.siakad.login.LoginActivity;
 import com.smk.siakad.model.Siswa;
 import com.smk.siakad.siswa.JadwalActivity;
 import com.smk.siakad.siswa.NilaiActivity;
+import com.smk.siakad.siswa.ProfilSiswaActivity;
 
 import java.util.List;
 
@@ -33,7 +36,7 @@ public class SiswaFragment extends Fragment {
 
     private List<Siswa> siswa;
     private TextView txtNamaUser, txtTagihan, txtNIS;
-    private String id_login, role;
+    private String username, role;
 
     private OnLogoutListener logoutListener;
 
@@ -65,10 +68,12 @@ public class SiswaFragment extends Fragment {
         TextView txtNilai = view.findViewById(R.id.txtNilai);
         TextView txtJadwal = view.findViewById(R.id.txtJadwal);
         TextView txtLogout = view.findViewById(R.id.txtLogout);
+        TextView txtProfil = view.findViewById(R.id.txtProfil);
         ImageView ivLogout = view.findViewById(R.id.ivLogout);
+        RelativeLayout btnLogout = view.findViewById(R.id.btnLogout);
 
         role = LoginActivity.prefConfig.readRole();
-        id_login = LoginActivity.prefConfig.readID();
+        username = LoginActivity.prefConfig.readID();
 
         cvNilai.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,7 +85,7 @@ public class SiswaFragment extends Fragment {
         cvProfil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getActivity(), JadwalActivity.class));
+                startActivity(new Intent(getActivity(), ProfilSiswaActivity.class));
             }
         });
 
@@ -101,8 +106,18 @@ public class SiswaFragment extends Fragment {
         if (role.equals("guru")) {
             txtNilai.setText("Data Nilai");
             txtJadwal.setText("Data Jadwal");
+            txtProfil.setText("Data Siswa");
             txtLogout.setText("Daftar Ulang");
+            btnLogout.setVisibility(View.VISIBLE);
+
             ivLogout.setImageDrawable(getResources().getDrawable(R.drawable.repeat));
+
+            cvProfil.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    startActivity(new Intent(getActivity(), MainActivity.class));
+                }
+            });
         }
         return view;
     }
@@ -110,8 +125,8 @@ public class SiswaFragment extends Fragment {
     public void getSiswa() {
         ApiInterface apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
         role = LoginActivity.prefConfig.readRole();
-        id_login = LoginActivity.prefConfig.readID();
-        Call<List<Siswa>> call =  apiInterface.loadSiswa(role, id_login);
+        username = LoginActivity.prefConfig.readID();
+        Call<List<Siswa>> call =  apiInterface.loadSiswa(role, username);
         call.enqueue(new Callback<List<Siswa>>() {
             @Override
             public void onResponse(Call<List<Siswa>> call, Response<List<Siswa>> response) {

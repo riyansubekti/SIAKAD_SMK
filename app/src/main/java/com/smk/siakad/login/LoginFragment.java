@@ -26,7 +26,7 @@ public class LoginFragment extends Fragment {
     private Button btnLogin;
 
     public interface OnLoginFormActivityListener {
-        public void performLogin(String role, String id_login);
+        public void performLogin(String role, String username);
 
     }
 
@@ -70,8 +70,8 @@ public class LoginFragment extends Fragment {
             public void onResponse(Call<Login> call, Response<Login> response) {
                 if (response.body().getResponse().equals("ok")) {
                     LoginActivity.prefConfig.writeLoginStatus(true);
-                    loginFormActivityListener.performLogin(response.body().getRole(), response.body().getId_login());
-                    System.out.println("okeh123"+response.body().getRole()+response.body().getId_login());
+                    loginFormActivityListener.performLogin(response.body().getRole(), response.body().getUsername());
+                    System.out.println("okeh123"+response.body().getRole()+response.body().getUsername());
                 } else if (response.body().getResponse().equals("failed")) {
                     LoginActivity.prefConfig.displayToast("Username atau Password Salah...");
                 }

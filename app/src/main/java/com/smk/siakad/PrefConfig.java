@@ -40,7 +40,7 @@ public class PrefConfig {
     }
 
     public String readID () {
-        return sharedPreferences.getString(context.getString(R.string.pref_id_user), "Id_login");
+        return sharedPreferences.getString(context.getString(R.string.pref_id_user), "Username");
     }
 
 

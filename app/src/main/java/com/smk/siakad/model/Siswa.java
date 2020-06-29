@@ -7,8 +7,8 @@ public class Siswa {
     private String id_siswa;
     @SerializedName("id_guru")
     private String id_guru;
-    @SerializedName("id_login")
-    private String id_login;
+    @SerializedName("password")
+    private String password;
     @SerializedName("nama")
     private String nama;
     @SerializedName("kelas")
@@ -21,6 +21,8 @@ public class Siswa {
     private String tagihan;
     @SerializedName("foto")
     private String foto;
+    @SerializedName("value")
+    private String value;
     @SerializedName("message")
     private String massage;
 
@@ -40,12 +42,12 @@ public class Siswa {
         this.id_guru = id_guru;
     }
 
-    public String getId_login() {
-        return id_login;
+    public String getPassword() {
+        return password;
     }
 
-    public void setId_login(String id_login) {
-        this.id_login = id_login;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getNama() {
@@ -94,6 +96,14 @@ public class Siswa {
 
     public void setFoto(String foto) {
         this.foto = foto;
+    }
+
+    public String getValue() {
+        return value;
+    }
+
+    public void setValue(String value) {
+        this.value = value;
     }
 
     public String getMassage() {

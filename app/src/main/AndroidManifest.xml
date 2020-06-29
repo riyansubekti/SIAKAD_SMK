@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".siswa.ProfilSiswaActivity"></activity>
+        <activity android:name=".siswa.ProfilSiswaActivity"
+            android:theme="@style/AppTheme"/>
         <activity android:name=".login.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

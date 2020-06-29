@@ -10,6 +10,7 @@ import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -34,7 +35,7 @@ public class AdapterSiswa extends RecyclerView.Adapter<AdapterSiswa.MyViewHolder
     public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private RecyclerViewClickListener mListener;
-        private ImageView mPicture;
+        private ImageView mPicture, btnDelete;
         private TextView mID, mNama;
         private RelativeLayout mRowContainer;
 
@@ -44,15 +45,20 @@ public class AdapterSiswa extends RecyclerView.Adapter<AdapterSiswa.MyViewHolder
             mID = itemView.findViewById(R.id.txtID);
             mNama = itemView.findViewById(R.id.txtNama);
             mRowContainer = itemView.findViewById(R.id.row_container);
+            btnDelete = itemView.findViewById(R.id.btnDelete);
 
             mListener = listener;
             mRowContainer.setOnClickListener(this);
+            btnDelete.setOnClickListener(this);
         }
         @Override
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.row_container:
                     mListener.onRowClick(mRowContainer, getAdapterPosition());
+                    break;
+                case R.id.btnDelete:
+                    mListener.onDeleteClick(btnDelete, getAdapterPosition());
                     break;
                 default:
                     break;
@@ -69,6 +75,7 @@ public class AdapterSiswa extends RecyclerView.Adapter<AdapterSiswa.MyViewHolder
 
         public interface RecyclerViewClickListener {
             void onRowClick(View view, int position);
+            void onDeleteClick(View view, int position);
         }
 
         @NonNull
@@ -100,7 +107,6 @@ public class AdapterSiswa extends RecyclerView.Adapter<AdapterSiswa.MyViewHolder
         public Filter getFilter() {
             if (filter==null) {
                 filter=new CustomFilter((ArrayList<Siswa>) siswaFilter,this);
-
             }
             return filter;
         }

@@ -19,7 +19,7 @@
             android:layout_marginTop="20dp">
             <de.hdodenhof.circleimageview.CircleImageView
                 android:layout_centerInParent="true"
-                android:id="@+id/picture"
+                android:id="@+id/ciPicture"
                 android:layout_width="140dp"
                 android:layout_height="140dp"
                 android:src="@drawable/ic_profil" />
@@ -27,6 +27,7 @@
                 android:id="@+id/fabChoosePic"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:visibility="gone"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentRight="true"
                 android:layout_marginBottom="10dp"
@@ -166,18 +167,44 @@
                         android:layout_height="wrap_content" />
                 </com.google.android.material.textfield.TextInputLayout>
 
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <EditText
+                        android:id="@+id/txtProfilPassword"
+                        android:hint="Password"
+                        android:fontFamily="sans-serif-light"
+                        android:inputType="textPassword"
+                        android:layout_width="match_parent"
+                        android:enabled="false"
+                        android:layout_height="wrap_content" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <EditText
+                        android:id="@+id/txtProfilConfirm"
+                        android:hint="Confirm Password"
+                        android:fontFamily="sans-serif-light"
+                        android:inputType="textPassword"
+                        android:layout_width="match_parent"
+                        android:enabled="false"
+                        android:layout_height="wrap_content" />
+                </com.google.android.material.textfield.TextInputLayout>
+
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
 
-        <com.google.android.material.button.MaterialButton
+        <Button
             android:id="@+id/btnProfilSave"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:text="Save Data"
-            android:visibility="gone"
             android:layout_below="@+id/layoutName"
             android:layout_marginTop="15dp"
+            android:layout_marginBottom="20dp"
             android:layout_centerHorizontal="true"
             android:background="@color/colorBackground1"
             android:textColor="@android:color/white"
@@ -186,6 +213,5 @@
             android:gravity="center"/>
 
     </RelativeLayout>
-
 
 </androidx.core.widget.NestedScrollView>
