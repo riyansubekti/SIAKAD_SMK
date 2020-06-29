@@ -71,27 +71,10 @@ public class ProfilSiswaActivity extends AppCompatActivity {
         fbChooseImage = findViewById(R.id.fabChoosePic);
 
         apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
+        username = LoginActivity.prefConfig.readID();
         role = LoginActivity.prefConfig.readRole();
         Intent intent = getIntent();
         key = intent.getStringExtra("key");
-        username = intent.getStringExtra("username");
-//        if (role.equals("guru")) {
-//            role = "siswa";
-//            username = intent.getStringExtra("username");
-//            if (key.equals("insert")) {
-//                txtNIS.setText("");
-//                txtPassword.setText("");
-//                txtxComfirm.setText("");
-//                txtNama.setText("");
-//                txtJurusan.setText("");
-//                txtKelas.setText("");
-//                txtAlamat.setText("");
-//                txtTagihan.setText("");
-//            } else {
-//                getSiswa();
-//            }
-//            editMode();
-//        }
 
         if (key.equals("insert")) {
             txtNIS.setText("");
@@ -104,11 +87,11 @@ public class ProfilSiswaActivity extends AppCompatActivity {
             txtTagihan.setText("");
             editMode();
         } else if (key.equals("update")) {
+            username = intent.getStringExtra("username");
             role = "siswa";
             getSiswa();
             editMode();
-        } else {
-            role = "siswa";
+        } else if (key.equals("profil")){
             getSiswa();
         }
 
@@ -177,6 +160,14 @@ public class ProfilSiswaActivity extends AppCompatActivity {
                 siswa = response.body();
 
                 String nis = siswa.get(0).getId_siswa();
+                if (role.equals("guru")) {
+                    getSupportActionBar().setTitle("Profil Guru");
+                    nis = siswa.get(0).getId_guru();
+                    txtKelas.setVisibility(View.GONE);
+                    txtJurusan.setVisibility(View.GONE);
+                    txtTagihan.setVisibility(View.GONE);
+                    btnSave.setVisibility(View.GONE);
+                }
                 String password = siswa.get(0).getPassword();
                 String nama = siswa.get(0).getNama();
                 String jurusan = siswa.get(0).getJurusan();
@@ -314,40 +305,6 @@ public class ProfilSiswaActivity extends AppCompatActivity {
             }
         });
     }
-
-    private void deleteData() {
-        final ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Deleting...");
-        progressDialog.show();
-
-        Call<Siswa> call = apiInterface.deleteSiswa("delete",username,"http://localhost/siakad/picture/300.jpeg");
-        call.enqueue(new Callback<Siswa>() {
-            @Override
-            public void onResponse(Call<Siswa> call, Response<Siswa> response) {
-                Log.i(ProfilSiswaActivity.class.getSimpleName(), response.toString());
-                String value = response.body().getValue();
-                String message = response.body().getMassage();
-
-                if (value.equals("1")){
-                    finish();
-                    Toast.makeText(ProfilSiswaActivity.this, "Berhasil mengubah data Siswa", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(ProfilSiswaActivity.this, message, Toast.LENGTH_SHORT).show();
-                }
-
-                progressDialog.dismiss();
-            }
-
-            @Override
-            public void onFailure(Call<Siswa> call, Throwable t) {
-                progressDialog.dismiss();
-                Toast.makeText(ProfilSiswaActivity.this, "rp :"+
-                                t.getMessage().toString(),
-                        Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
 
     private void editMode() {
         txtNIS.setEnabled(true);

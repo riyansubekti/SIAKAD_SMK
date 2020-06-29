@@ -71,6 +71,7 @@ public class SiswaFragment extends Fragment {
         TextView txtProfil = view.findViewById(R.id.txtProfil);
         ImageView ivLogout = view.findViewById(R.id.ivLogout);
         RelativeLayout btnLogout = view.findViewById(R.id.btnLogout);
+        TextView btnProfil = view.findViewById(R.id.btnProfil);
 
         role = LoginActivity.prefConfig.readRole();
         username = LoginActivity.prefConfig.readID();
@@ -109,13 +110,41 @@ public class SiswaFragment extends Fragment {
             txtProfil.setText("Data Siswa");
             txtLogout.setText("Daftar Ulang");
             btnLogout.setVisibility(View.VISIBLE);
+            btnProfil.setVisibility(View.VISIBLE);
 
             ivLogout.setImageDrawable(getResources().getDrawable(R.drawable.repeat));
+
+            btnLogout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    logoutListener.logoutPerformed();
+                }
+            });
+
+            btnProfil.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(getActivity(), ProfilSiswaActivity.class);
+                    intent.putExtra("key", "profil");
+                    startActivity(intent);
+                }
+            });
+
+            cvNilai.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(getActivity(), MainActivity.class);
+                    intent.putExtra("menu", "nilai");
+                    startActivity(intent);
+                }
+            });
 
             cvProfil.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    startActivity(new Intent(getActivity(), MainActivity.class));
+                    Intent intent = new Intent(getActivity(), MainActivity.class);
+                    intent.putExtra("menu", "profil");
+                    startActivity(intent);
                 }
             });
         }

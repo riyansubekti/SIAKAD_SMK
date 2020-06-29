@@ -101,7 +101,6 @@
                     android:textColor="#ffff"
                     android:textSize="24dp" />
 
-
             </LinearLayout>
 
             <TextView

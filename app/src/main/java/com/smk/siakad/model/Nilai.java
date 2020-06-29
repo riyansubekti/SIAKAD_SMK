@@ -5,6 +5,12 @@ import com.google.gson.annotations.SerializedName;
 public class Nilai {
     @SerializedName("nomer")
     private String nomer;
+    @SerializedName("id_nilai")
+    private String id_nilai;
+    @SerializedName("id_mapel")
+    private String id_mapel;
+    @SerializedName("id_siswa")
+    private String id_siswa;
     @SerializedName("nama_mapel")
     private String nama_mapel;
     @SerializedName("nama")
@@ -23,6 +29,8 @@ public class Nilai {
     private String status;
     @SerializedName("semester")
     private String semester;
+    @SerializedName("value")
+    private String value;
     @SerializedName("message")
     private String massage;
 
@@ -32,6 +40,30 @@ public class Nilai {
 
     public void setNomer(String nomer) {
         this.nomer = nomer;
+    }
+
+    public String getId_nilai() {
+        return id_nilai;
+    }
+
+    public void setId_nilai(String id_nilai) {
+        this.id_nilai = id_nilai;
+    }
+
+    public String getId_mapel() {
+        return id_mapel;
+    }
+
+    public void setId_mapel(String id_mapel) {
+        this.id_mapel = id_mapel;
+    }
+
+    public String getId_siswa() {
+        return id_siswa;
+    }
+
+    public void setId_siswa(String id_siswa) {
+        this.id_siswa = id_siswa;
     }
 
     public String getNama_mapel() {
@@ -104,6 +136,14 @@ public class Nilai {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getValue() {
+        return value;
+    }
+
+    public void setValue(String value) {
+        this.value = value;
     }
 
     public String getMassage() {

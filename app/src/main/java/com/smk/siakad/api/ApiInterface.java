@@ -27,6 +27,40 @@ public interface ApiInterface {
     @GET("get_nilai.php")
     Call<List<Nilai>> getNilai(@Query("id_siswa") String id_siswa);
 
+    @FormUrlEncoded
+    @POST("delete_nilai.php")
+    Call<Nilai> deleteNilai(
+            @Field("key") String key,
+            @Field("id_nilai") String id_nilai
+    );
+
+    @FormUrlEncoded
+    @POST("update_nilai.php")
+    Call<Nilai> updateNilai(
+            @Field("key") String key,
+            @Field("id_nilai") String id_nilai,
+            @Field("id_mapel") String id_mapel,
+            @Field("id_siswa") String id_siswa,
+            @Field("tugas") String tugas,
+            @Field("uts") String uts,
+            @Field("uas") String uas,
+            @Field("kkm") String kkm,
+            @Field("semester") String semester
+    );
+
+    @FormUrlEncoded
+    @POST("insert_nilai.php")
+    Call<Nilai> insertNilai(
+            @Field("key") String key,
+            @Field("id_mapel") String id_mapel,
+            @Field("id_siswa") String id_siswa,
+            @Field("tugas") String tugas,
+            @Field("uts") String uts,
+            @Field("uas") String uas,
+            @Field("kkm") String kkm,
+            @Field("semester") String semester
+    );
+
     @GET("get_jadwal_siswa.php")
     Call<List<JadwalSiswa>> getJadwalSiswa(@Query("kelas") String kelas);
 

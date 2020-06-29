@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical"
+    android:paddingHorizontal="16dp"
+    android:paddingVertical="20dp">
+
+    <View
+        android:id="@+id/viewDua"
+        style="@style/Divider" />
+
+    <TextView
+        android:id="@+id/txtNilaiJudul"
+        android:layout_below="@+id/viewDua"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:text="INSERT NILAI SISWA"
+        android:layout_marginTop="3dp"
+        android:textAlignment="center"
+        android:fontFamily="@font/roboto_bold"
+        android:textColor="#5E5E5E"
+        android:textSize="20sp"/>
+    <View
+        android:id="@+id/viewSatu"
+        android:layout_below="@id/txtNilaiJudul"
+        android:layout_marginTop="3dp"
+        style="@style/Divider"/>
+
+    <LinearLayout
+        android:id="@+id/l_dialog"
+        android:layout_below="@+id/viewSatu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="15dp"
+        android:orientation="vertical">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/etNamaMapel"
+                android:hint="Nama Mata Pelajaran"
+                android:fontFamily="sans-serif-light"
+                android:inputType="textPersonName|textCapWords"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/etNilaiTugas"
+                android:hint="Nilai Tugas"
+                android:fontFamily="sans-serif-light"
+                android:inputType="number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/etNilaiUTS"
+                android:hint="Nilai UTS"
+                android:fontFamily="sans-serif-light"
+                android:inputType="number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/etNilaiUAS"
+                android:hint="Nilai UAS"
+                android:fontFamily="sans-serif-light"
+                android:inputType="number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/etNilaiKKM"
+                android:hint="Nilai KKM"
+                android:fontFamily="sans-serif-light"
+                android:inputType="number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/etNilaiSemester"
+                android:hint="Semester"
+                android:fontFamily="sans-serif-light"
+                android:inputType="number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_below="@+id/l_dialog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/btnSaveNilai"
+            android:layout_width="130dp"
+            android:layout_height="40dp"
+            android:layout_below="@+id/l_dialog"
+            android:background="@color/colorBackground1"
+            android:textColor="@android:color/white"
+            android:text="SIMPAN"
+            android:layout_marginHorizontal="10dp"/>
+
+        <Button
+            android:id="@+id/btnDeleteNilai"
+            android:layout_width="130dp"
+            android:layout_height="40dp"
+            android:visibility="gone"
+            android:layout_below="@+id/l_dialog"
+            android:background="@color/colorBackground1"
+            android:textColor="@android:color/white"
+            android:layout_alignEnd="@+id/btnSaveNilai"
+            android:text="HAPUS"
+            android:layout_marginHorizontal="10dp"/>
+    </LinearLayout>
+
+</RelativeLayout>

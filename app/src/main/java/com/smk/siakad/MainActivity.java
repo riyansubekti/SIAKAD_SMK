@@ -26,6 +26,7 @@ import com.smk.siakad.adapter.AdapterSiswa;
 import com.smk.siakad.api.ApiClient;
 import com.smk.siakad.api.ApiInterface;
 import com.smk.siakad.model.Siswa;
+import com.smk.siakad.siswa.NilaiActivity;
 import com.smk.siakad.siswa.ProfilSiswaActivity;
 
 import java.util.List;
@@ -36,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
     private AdapterSiswa adapterSiswa;
     private List<Siswa> siswa;
     private FloatingActionButton fabInsert;
+    private String menu;
+    private TextView txtJudul;
     ApiInterface apiInterface;
     AdapterSiswa.RecyclerViewClickListener listener;
     ProgressBar progressBar;
@@ -46,10 +49,18 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
-
         progressBar = findViewById(R.id.progress);
         recyclerView = findViewById(R.id.rcSiswa);
         fabInsert = findViewById(R.id.fabInsert);
+        txtJudul = findViewById(R.id.txtJudulDesk);
+
+        Intent intent = getIntent();
+        menu = intent.getStringExtra("menu");
+        System.out.println("okeh "+menu);
+        if (menu.equals("nilai")) {
+            fabInsert.setVisibility(View.GONE);
+            txtJudul.setText("Klik untuk mengubah data nilai siswa");
+        }
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
@@ -57,18 +68,32 @@ public class MainActivity extends AppCompatActivity {
         listener = new AdapterSiswa.RecyclerViewClickListener() {
             @Override
             public void onRowClick(View view, int position) {
-                Intent intent = new Intent(MainActivity.this, ProfilSiswaActivity.class);
-                intent.putExtra("username", siswa.get(position).getId_siswa());
-                intent.putExtra("key", "update");
-                startActivity(intent);
+                if (menu.equals("nilai")) {
+                    Intent intent = new Intent(MainActivity.this, NilaiActivity.class);
+                    intent.putExtra("username", siswa.get(position).getId_siswa());
+                    startActivity(intent);
+                } else {
+                    Intent intent = new Intent(MainActivity.this, ProfilSiswaActivity.class);
+                    intent.putExtra("username", siswa.get(position).getId_siswa());
+                    intent.putExtra("key", "update");
+                    startActivity(intent);
+                }
             }
 
             @Override
             public void onDeleteClick(View view, int position) {
-                String nis = siswa.get(position).getId_siswa();
-                String key = "delete";
-                String foto = siswa.get(position).getFoto();
-                deleteSiswa(key, nis, foto);
+                if (menu.equals("nilai")) {
+                    Intent intent = new Intent(MainActivity.this, NilaiActivity.class);
+                    intent.putExtra("username", siswa.get(position).getId_siswa());
+                    Toast.makeText(MainActivity.this, "Klik data untuk menghapusnya...", Toast.LENGTH_SHORT).show();
+                    startActivity(intent);
+                }else{
+                    String nis = siswa.get(position).getId_siswa();
+                    String key = "delete";
+                    String foto = siswa.get(position).getFoto();
+                    deleteSiswa(key, nis, foto);
+                }
+
             }
         };
 

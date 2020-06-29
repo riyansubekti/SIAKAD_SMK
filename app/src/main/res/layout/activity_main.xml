@@ -22,10 +22,11 @@
             android:textSize="24sp" />
 
         <TextView
+            android:id="@+id/txtJudulDesk"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/roboto_regular"
-            android:text="Klik untuk melihat nilai siswa"
+            android:text="Klik untuk mengubah data siswa"
             android:textAlignment="center"
             android:textColor="#5E5E5E"
             android:textSize="14sp" />
