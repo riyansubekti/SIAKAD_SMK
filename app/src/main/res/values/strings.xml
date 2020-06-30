@@ -17,6 +17,18 @@
         <item>5</item>
         <item>6</item>
     </string-array>
+    <string-array name="guru">
+        <item>2</item>
+        <item>4</item>
+    </string-array>
+    <string-array name="kelas">
+        <item>1-A</item>
+        <item>1-B</item>
+        <item>2-A</item>
+        <item>2-B</item>
+        <item>3-A</item>
+        <item>3-B</item>
+    </string-array>
     <string name="MenuMapel">Jadwal Mata Pelajaran</string>
     <string name="tab_text_1">Tab 1</string>
     <string name="tab_text_2">Tab 2</string>

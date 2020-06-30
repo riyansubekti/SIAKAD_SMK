@@ -35,6 +35,13 @@ public interface ApiInterface {
     );
 
     @FormUrlEncoded
+    @POST("delete_jadwal.php")
+    Call<JadwalSiswa> deleteJadwal(
+            @Field("key") String key,
+            @Field("id_mapel") String id_mapel
+    );
+
+    @FormUrlEncoded
     @POST("update_nilai.php")
     Call<Nilai> updateNilai(
             @Field("key") String key,
@@ -49,6 +56,19 @@ public interface ApiInterface {
     );
 
     @FormUrlEncoded
+    @POST("update_jadwal.php")
+    Call<JadwalSiswa> updateJadwal(
+            @Field("key") String key,
+            @Field("id_mapel") String id_mapel,
+            @Field("id_guru") String id_guru,
+            @Field("nama_mapel") String nama_mapel,
+            @Field("jurusan") String jurusan,
+            @Field("kelas") String kelas,
+            @Field("waktu_pelajaran") String waktu_pelajaran,
+            @Field("hari") String hari
+    );
+
+    @FormUrlEncoded
     @POST("insert_nilai.php")
     Call<Nilai> insertNilai(
             @Field("key") String key,
@@ -59,6 +79,18 @@ public interface ApiInterface {
             @Field("uas") String uas,
             @Field("kkm") String kkm,
             @Field("semester") String semester
+    );
+
+    @FormUrlEncoded
+    @POST("insert_jadwal.php")
+    Call<JadwalSiswa> insertJadwal(
+            @Field("key") String key,
+            @Field("id_guru") String id_guru,
+            @Field("nama_mapel") String nama_mapel,
+            @Field("jurusan") String jurusan,
+            @Field("kelas") String kelas,
+            @Field("waktu_pelajaran") String waktu_pelajaran,
+            @Field("hari") String hari
     );
 
     @GET("get_jadwal_siswa.php")

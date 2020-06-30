@@ -17,7 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:text="INSERT NILAI SISWA"
+        android:text="INSERT JADWAL SISWA"
         android:layout_marginTop="3dp"
         android:textAlignment="center"
         android:fontFamily="@font/roboto_bold"
@@ -37,12 +37,33 @@
         android:layout_marginVertical="15dp"
         android:orientation="vertical">
 
+        <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:text="ID GURU : "
+            android:layout_gravity="center_vertical"
+            android:layout_marginEnd="15dp"
+            android:textSize="20dp" />
+
+        <Spinner
+            android:id="@+id/etIDGuru"
+            android:layout_gravity="center_vertical"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <EditText
-                android:id="@+id/etNamaMapel"
-                android:hint="ID Mata Pelajaran"
+                android:id="@+id/etMapel"
+                android:hint="Nama Mata Pelajaran"
                 android:fontFamily="sans-serif-light"
                 android:inputType="textPersonName|textCapWords"
                 android:layout_width="match_parent"
@@ -53,10 +74,42 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <EditText
-                android:id="@+id/etNilaiTugas"
-                android:hint="Nilai Tugas"
+                android:id="@+id/etJurusan"
+                android:hint="Jurusan"
                 android:fontFamily="sans-serif-light"
-                android:inputType="number"
+                android:inputType="textPersonName|textCapWords"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:text="Pilih Kelas : "
+                android:layout_gravity="center_vertical"
+                android:layout_marginEnd="15dp"
+                android:textSize="20dp" />
+
+            <Spinner
+                android:id="@+id/etKelas"
+                android:layout_gravity="center_vertical"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/etWaktu"
+                android:hint="Waktu Contoh : 06:00 - 07:00"
+                android:fontFamily="sans-serif-light"
+                android:inputType="textPersonName|textCapWords"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -65,46 +118,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <EditText
-                android:id="@+id/etNilaiUTS"
-                android:hint="Nilai UTS"
+                android:id="@+id/etHari"
+                android:hint="Hari"
                 android:fontFamily="sans-serif-light"
-                android:inputType="number"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <EditText
-                android:id="@+id/etNilaiUAS"
-                android:hint="Nilai UAS"
-                android:fontFamily="sans-serif-light"
-                android:inputType="number"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <EditText
-                android:id="@+id/etNilaiKKM"
-                android:hint="Nilai KKM"
-                android:fontFamily="sans-serif-light"
-                android:inputType="number"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <EditText
-                android:id="@+id/etNilaiSemester"
-                android:hint="Semester"
-                android:fontFamily="sans-serif-light"
-                android:inputType="number"
+                android:inputType="textPersonName|textCapWords"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -118,7 +135,7 @@
         android:gravity="center"
         android:orientation="horizontal">
         <Button
-            android:id="@+id/btnSaveNilai"
+            android:id="@+id/btnSaveJadwal"
             android:layout_width="130dp"
             android:layout_height="40dp"
             android:layout_below="@+id/l_dialog"
@@ -128,7 +145,7 @@
             android:layout_marginHorizontal="10dp"/>
 
         <Button
-            android:id="@+id/btnDeleteNilai"
+            android:id="@+id/btnDeleteJadwal"
             android:layout_width="130dp"
             android:layout_height="40dp"
             android:visibility="gone"

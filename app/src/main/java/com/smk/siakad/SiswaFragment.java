@@ -147,6 +147,13 @@ public class SiswaFragment extends Fragment {
                     startActivity(intent);
                 }
             });
+
+            cvJadwal.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    startActivity(new Intent(getActivity(), JadwalSiswaActivity.class));
+                }
+            });
         }
         return view;
     }
