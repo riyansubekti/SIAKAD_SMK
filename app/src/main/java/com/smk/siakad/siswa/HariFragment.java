@@ -24,9 +24,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.smk.siakad.JadwalSiswaActivity;
 import com.smk.siakad.R;
-import com.smk.siakad.SiswaFragment;
+import com.smk.siakad.BerandaFragment;
 import com.smk.siakad.adapter.AdapterJadwalSiswa;
 import com.smk.siakad.api.ApiClient;
 import com.smk.siakad.api.ApiInterface;
@@ -222,7 +221,7 @@ public class HariFragment extends Fragment implements AdapterView.OnItemSelected
             @Override
             public void onResponse(Call<List<JadwalSiswa>> call, Response<List<JadwalSiswa>> response) {
                 jadwalSiswaList = response.body();
-                Log.i(JadwalActivity.class.getSimpleName(), response.body().toString());
+                Log.i(JadwalSiswaActivity.class.getSimpleName(), response.body().toString());
                 adapterJadwalSiswa = new AdapterJadwalSiswa(jadwalSiswaList, getActivity(), listener);
                 recyclerView.setAdapter(adapterJadwalSiswa);
                 adapterJadwalSiswa.getFilter().filter(hari);
@@ -262,10 +261,10 @@ public class HariFragment extends Fragment implements AdapterView.OnItemSelected
     @Override
     public void onResume() {
         super.onResume();
-        if (SiswaFragment.kelas == null){
-            SiswaFragment.kelas = "1-A";
+        if (BerandaFragment.kelas == null){
+            BerandaFragment.kelas = "1-A";
         }
-        getJadwalSiswa(SiswaFragment.kelas);
+        getJadwalSiswa(BerandaFragment.kelas);
     }
 
     @Override

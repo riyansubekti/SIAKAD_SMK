@@ -1,9 +1,7 @@
-package com.smk.siakad;
+package com.smk.siakad.siswa;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentActivity;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -13,7 +11,7 @@ import android.widget.ProgressBar;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
-import com.smk.siakad.siswa.HariFragment;
+import com.smk.siakad.R;
 
 import java.util.ArrayList;
 import java.util.HashMap;

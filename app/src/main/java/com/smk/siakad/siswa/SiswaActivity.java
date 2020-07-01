@@ -1,4 +1,4 @@
-package com.smk.siakad;
+package com.smk.siakad.siswa;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -12,26 +12,21 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ProgressBar;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.smk.siakad.R;
 import com.smk.siakad.adapter.AdapterSiswa;
 
 import com.smk.siakad.api.ApiClient;
 import com.smk.siakad.api.ApiInterface;
 import com.smk.siakad.model.Siswa;
-import com.smk.siakad.siswa.NilaiActivity;
-import com.smk.siakad.siswa.ProfilSiswaActivity;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class SiswaActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private AdapterSiswa adapterSiswa;
@@ -69,11 +64,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onRowClick(View view, int position) {
                 if (menu.equals("nilai")) {
-                    Intent intent = new Intent(MainActivity.this, NilaiActivity.class);
+                    Intent intent = new Intent(SiswaActivity.this, NilaiActivity.class);
                     intent.putExtra("username", siswa.get(position).getId_siswa());
                     startActivity(intent);
                 } else {
-                    Intent intent = new Intent(MainActivity.this, ProfilSiswaActivity.class);
+                    Intent intent = new Intent(SiswaActivity.this, ProfilSiswaActivity.class);
                     intent.putExtra("username", siswa.get(position).getId_siswa());
                     intent.putExtra("key", "update");
                     startActivity(intent);
@@ -83,9 +78,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onDeleteClick(View view, int position) {
                 if (menu.equals("nilai")) {
-                    Intent intent = new Intent(MainActivity.this, NilaiActivity.class);
+                    Intent intent = new Intent(SiswaActivity.this, NilaiActivity.class);
                     intent.putExtra("username", siswa.get(position).getId_siswa());
-                    Toast.makeText(MainActivity.this, "Klik data untuk menghapusnya...", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SiswaActivity.this, "Klik data untuk menghapusnya...", Toast.LENGTH_SHORT).show();
                     startActivity(intent);
                 }else{
                     String nis = siswa.get(position).getId_siswa();
@@ -102,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
         fabInsert.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, ProfilSiswaActivity.class);
+                Intent intent = new Intent(SiswaActivity.this, ProfilSiswaActivity.class);
                 intent.putExtra("key", "insert");
                 startActivity(intent);
             }
@@ -125,9 +120,9 @@ public class MainActivity extends AppCompatActivity {
 
                 if (value.equals("1")){
                     finish();
-                    Toast.makeText(MainActivity.this, "Berhasil menghapus data Siswa dengan NIM : "+nis, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SiswaActivity.this, "Berhasil menghapus data Siswa dengan NIM : "+nis, Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SiswaActivity.this, message, Toast.LENGTH_SHORT).show();
                 }
 
                 progressDialog.dismiss();
@@ -136,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<Siswa> call, Throwable t) {
                 progressDialog.dismiss();
-                Toast.makeText(MainActivity.this, "rp :"+
+                Toast.makeText(SiswaActivity.this, "rp :"+
                                 t.getMessage().toString(),
                         Toast.LENGTH_SHORT).show();
             }
@@ -151,15 +146,15 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(Call<List<Siswa>> call, Response<List<Siswa>> response) {
                 progressBar.setVisibility(View.GONE);
                 siswa = response.body();
-                Log.i(MainActivity.class.getSimpleName(), response.body().toString());
-                adapterSiswa = new AdapterSiswa(siswa, MainActivity.this, listener);
+                Log.i(SiswaActivity.class.getSimpleName(), response.body().toString());
+                adapterSiswa = new AdapterSiswa(siswa, SiswaActivity.this, listener);
                 recyclerView.setAdapter(adapterSiswa);
                 adapterSiswa.notifyDataSetChanged();
             }
 
             @Override
             public void onFailure(Call<List<Siswa>> call, Throwable t) {
-                Toast.makeText(MainActivity.this, "rp :"+
+                Toast.makeText(SiswaActivity.this, "rp :"+
                                 t.getMessage().toString(),
                         Toast.LENGTH_SHORT).show();
             }

@@ -1,12 +1,9 @@
-package com.smk.siakad;
+package com.smk.siakad.siswa;
 
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
@@ -19,19 +16,17 @@ import android.widget.Toast;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 
-import androidx.annotation.NonNull;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import com.google.gson.internal.$Gson$Preconditions;
+import com.smk.siakad.R;
 import com.smk.siakad.api.ApiClient;
 import com.smk.siakad.api.ApiInterface;
 import com.smk.siakad.login.LoginActivity;
 import com.smk.siakad.model.JadwalSiswa;
-import com.smk.siakad.siswa.ProfilSiswaActivity;
 import com.smk.siakad.ui.tabs.SectionsPagerAdapter;
 
 public class JadwalSiswaActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {

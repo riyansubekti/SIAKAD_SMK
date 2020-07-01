@@ -10,12 +10,10 @@ import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
-import com.smk.siakad.CustomFilter;
 import com.smk.siakad.R;
 import com.smk.siakad.model.Siswa;
 
@@ -25,12 +23,11 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class AdapterSiswa extends RecyclerView.Adapter<AdapterSiswa.MyViewHolder> implements Filterable {
+public class AdapterSiswa extends RecyclerView.Adapter<AdapterSiswa.MyViewHolder> {
 
     public List<Siswa> siswa, siswaFilter;
     private Context context;
     private RecyclerViewClickListener mListener;
-    CustomFilter filter;
 
     public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
@@ -101,14 +98,6 @@ public class AdapterSiswa extends RecyclerView.Adapter<AdapterSiswa.MyViewHolder
                     .load(siswa.get(position).getFoto())
                     .apply(requestOptions)
                     .into(holder.mPicture);
-        }
-
-        @Override
-        public Filter getFilter() {
-            if (filter==null) {
-                filter=new CustomFilter((ArrayList<Siswa>) siswaFilter,this);
-            }
-            return filter;
         }
 
         @Override

@@ -1,31 +1,27 @@
-package com.smk.siakad;
+package com.smk.siakad.guru;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 import android.app.AlarmManager;
-import android.app.Notification;
 import android.app.PendingIntent;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.SystemClock;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.smk.siakad.R;
+import com.smk.siakad.utils.ReminderNotification;
 import com.smk.siakad.api.ApiClient;
 import com.smk.siakad.api.ApiInterface;
 import com.smk.siakad.model.Siswa;
-import com.smk.siakad.siswa.NilaiActivity;
-
-import static com.smk.siakad.App.CHANNEL;
 
 public class DaftarUlangActivity extends AppCompatActivity {
     private NotificationManagerCompat notificationManagerCompat;

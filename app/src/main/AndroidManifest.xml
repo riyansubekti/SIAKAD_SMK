@@ -13,8 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".DaftarUlangActivity"></activity>
-        <activity android:name=".KelasActivity" />
+        <activity android:name=".guru.DaftarUlangActivity"></activity>
+        <activity android:name=".siswa.KelasActivity" />
         <activity
             android:name=".siswa.ProfilSiswaActivity"
             android:theme="@style/AppTheme" />
@@ -26,9 +26,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".siswa.NilaiActivity" />
-        <activity android:name=".MainActivity" />
-        <activity android:name=".JadwalSiswaActivity" />
-        <receiver android:name=".ReminderNotification"/>
+        <activity android:name=".siswa.SiswaActivity" />
+        <activity android:name=".siswa.JadwalSiswaActivity" />
+        <receiver android:name=".utils.ReminderNotification"/>
     </application>
 
 </manifest>
