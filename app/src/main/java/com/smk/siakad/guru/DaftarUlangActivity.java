@@ -1,5 +1,6 @@
 package com.smk.siakad.guru;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationManagerCompat;
 import retrofit2.Call;
@@ -33,6 +34,12 @@ public class DaftarUlangActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_daftar_ulang);
+
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setTitle("Daftar Ulang");
+        }
 
         notificationManagerCompat = NotificationManagerCompat.from(this);
         etNis = findViewById(R.id.etDUNis);

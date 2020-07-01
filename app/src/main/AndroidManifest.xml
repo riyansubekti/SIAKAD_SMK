@@ -13,11 +13,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".guru.DaftarUlangActivity"></activity>
+        <activity android:name=".guru.DaftarUlangActivity"
+            android:theme="@style/AppTheme"
+            android:parentActivityName=".login.LoginActivity"/>
         <activity android:name=".siswa.KelasActivity" />
         <activity
             android:name=".siswa.ProfilSiswaActivity"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"
+            android:parentActivityName=".login.LoginActivity"/>
         <activity android:name=".login.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,9 +28,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".siswa.NilaiActivity" />
-        <activity android:name=".siswa.SiswaActivity" />
-        <activity android:name=".siswa.JadwalSiswaActivity" />
+        <activity android:name=".siswa.NilaiActivity"
+            android:theme="@style/AppTheme"
+            android:parentActivityName=".login.LoginActivity"/>
+        <activity android:name=".siswa.SiswaActivity"
+            android:theme="@style/AppTheme"
+            android:parentActivityName=".login.LoginActivity"/>
+        <activity android:name=".siswa.JadwalSiswaActivity"
+            android:theme="@style/AppTheme"
+            android:parentActivityName=".login.LoginActivity"/>
         <receiver android:name=".utils.ReminderNotification"/>
     </application>
 

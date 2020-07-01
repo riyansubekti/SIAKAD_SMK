@@ -1,5 +1,6 @@
 package com.smk.siakad.siswa;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -42,6 +43,11 @@ public class SiswaActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setTitle("Daftar Siswa");
+        }
 
         apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
         progressBar = findViewById(R.id.progress);
@@ -51,7 +57,6 @@ public class SiswaActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         menu = intent.getStringExtra("menu");
-        System.out.println("okeh "+menu);
         if (menu.equals("nilai")) {
             fabInsert.setVisibility(View.GONE);
             txtJudul.setText("Klik untuk mengubah data nilai siswa");
