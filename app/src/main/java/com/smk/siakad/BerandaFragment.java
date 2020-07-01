@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -81,6 +82,7 @@ public class BerandaFragment extends Fragment {
         ImageView ivLogout = view.findViewById(R.id.ivLogout);
         RelativeLayout btnLogout = view.findViewById(R.id.btnLogout);
         TextView btnProfil = view.findViewById(R.id.btnProfil);
+        LinearLayout l_tagihan = view.findViewById(R.id.l_tagihan);
 
         apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
         role = LoginActivity.prefConfig.readRole();
@@ -123,6 +125,7 @@ public class BerandaFragment extends Fragment {
             txtLogout.setText("Daftar Ulang");
             btnLogout.setVisibility(View.VISIBLE);
             btnProfil.setVisibility(View.VISIBLE);
+            l_tagihan.setVisibility(View.GONE);
 
             ivLogout.setImageDrawable(getResources().getDrawable(R.drawable.repeat));
 

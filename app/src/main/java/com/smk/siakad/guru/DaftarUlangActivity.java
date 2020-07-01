@@ -60,20 +60,7 @@ public class DaftarUlangActivity extends AppCompatActivity {
 
         long timeAtButtonClick = System.currentTimeMillis();
         long timeSecondsInMillis = 3600 * 1000 * jam;
-
         alarmManager.set(AlarmManager.RTC_WAKEUP, timeAtButtonClick + timeSecondsInMillis, pendingIntent);
-//
-//        Notification notification = new NotificationCompat.Builder(this, CHANNEL)
-//                .setSmallIcon(R.drawable.ic_notifi)
-//                .setContentTitle("Reminder Untuk NIS : ")
-//                .setContentText("Tagihan anda sebesar : ")
-//                .setPriority(NotificationCompat.PRIORITY_HIGH)
-//                .setCategory(NotificationCompat.CATEGORY_MESSAGE)
-//                .build();
-//
-//        SystemClock.sleep(total);
-//        notificationManagerCompat.notify(1, notification);
-//        Toast.makeText(this, "Notifikasi akan terkirim dalam waktu : " + total, Toast.LENGTH_SHORT).show();
     }
 
     public void insertData() {
