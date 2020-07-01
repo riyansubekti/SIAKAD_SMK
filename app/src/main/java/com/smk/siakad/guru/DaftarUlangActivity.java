@@ -59,7 +59,7 @@ public class DaftarUlangActivity extends AppCompatActivity {
         AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
 
         long timeAtButtonClick = System.currentTimeMillis();
-        long timeSecondsInMillis = 1000 * jam;
+        long timeSecondsInMillis = 3600 * 1000 * jam;
 
         alarmManager.set(AlarmManager.RTC_WAKEUP, timeAtButtonClick + timeSecondsInMillis, pendingIntent);
 //
