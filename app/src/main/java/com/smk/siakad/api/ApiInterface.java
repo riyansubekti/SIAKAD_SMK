@@ -3,6 +3,7 @@ package com.smk.siakad.api;
 import com.smk.siakad.model.JadwalSiswa;
 import com.smk.siakad.model.Login;
 import com.smk.siakad.model.Nilai;
+import com.smk.siakad.model.Pengumuman;
 import com.smk.siakad.model.Siswa;
 
 import java.util.List;
@@ -23,6 +24,9 @@ public interface ApiInterface {
 
     @GET("get_siswa.php")
     Call<List<Siswa>> loadSiswa(@Query("role") String role, @Query("username") String username);
+
+    @GET("get_pengumuman.php")
+    Call<List<Pengumuman>> getPeng(@Query("role") String role);
 
     @GET("get_nilai.php")
     Call<List<Nilai>> getNilai(@Query("id_siswa") String id_siswa);
@@ -132,5 +136,13 @@ public interface ApiInterface {
             @Field("key") String key,
             @Field("id_siswa") String id_siswa,
             @Field("foto") String foto
+    );
+
+    @FormUrlEncoded
+    @POST("insert_daftarulang.php")
+    Call<Siswa> insertDU(
+            @Field("id_siswa") String id_siswa,
+            @Field("kelas") String kelas,
+            @Field("tagihan") String tagihan
     );
 }

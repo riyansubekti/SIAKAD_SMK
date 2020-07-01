@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:name=".App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -12,7 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".KelasActivity"></activity>
+        <activity android:name=".DaftarUlangActivity"></activity>
+        <activity android:name=".KelasActivity" />
         <activity
             android:name=".siswa.ProfilSiswaActivity"
             android:theme="@style/AppTheme" />
@@ -23,10 +25,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".siswa.JadwalActivity" />
         <activity android:name=".siswa.NilaiActivity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".JadwalSiswaActivity" />
+        <receiver android:name=".ReminderNotification"/>
     </application>
 
 </manifest>

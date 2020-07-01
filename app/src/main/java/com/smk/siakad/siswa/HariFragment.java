@@ -26,11 +26,13 @@ import android.widget.Toast;
 
 import com.smk.siakad.JadwalSiswaActivity;
 import com.smk.siakad.R;
+import com.smk.siakad.SiswaFragment;
 import com.smk.siakad.adapter.AdapterJadwalSiswa;
 import com.smk.siakad.api.ApiClient;
 import com.smk.siakad.api.ApiInterface;
 import com.smk.siakad.login.LoginActivity;
 import com.smk.siakad.model.JadwalSiswa;
+import com.smk.siakad.model.Siswa;
 
 import java.util.List;
 
@@ -38,8 +40,9 @@ import java.util.List;
 public class HariFragment extends Fragment implements AdapterView.OnItemSelectedListener {
     private AdapterJadwalSiswa adapterJadwalSiswa;
     private List<JadwalSiswa> jadwalSiswaList;
+    private List<Siswa> siswa;
     AdapterJadwalSiswa.RecyclerViewClickListener listener;
-    private String id_mapel, hari, kelas, role, mKelas, mId_guru, gHari, gMapel, gJurusan, gWaktu, gId_mapel;
+    private String id_mapel, hari, kelas, role, mKelas, mId_guru, gHari, gMapel, gJurusan, gWaktu, gId_mapel, kelasSiswa;
     private ApiInterface apiInterface;
     private RecyclerView recyclerView;
     private Spinner spnKelas;
@@ -61,6 +64,7 @@ public class HariFragment extends Fragment implements AdapterView.OnItemSelected
         apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
         recyclerView = view.findViewById(R.id.rcJadwalSiswa);
         spnKelas = view.findViewById(R.id.spnKelas);
+        TextView txtPilih = view.findViewById(R.id.txtPilihKelas);
         role = LoginActivity.prefConfig.readRole();
 
         if (role.equals("guru")) {
@@ -79,6 +83,9 @@ public class HariFragment extends Fragment implements AdapterView.OnItemSelected
 //                    Toast.makeText(getActivity(), "ID3 "+adapterJadwalSiswa.jadwalFilter.get(position).getId_mapel(), Toast.LENGTH_SHORT).show();
                 }
             };
+        }else {
+            spnKelas.setVisibility(View.GONE);
+            txtPilih.setVisibility(View.GONE);
         }
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
@@ -231,31 +238,57 @@ public class HariFragment extends Fragment implements AdapterView.OnItemSelected
         });
     }
 
+    private void getSiswa() {
+        String username = LoginActivity.prefConfig.readID();
+        String roles = LoginActivity.prefConfig.readRole();
+
+        Call<List<Siswa>> call =  apiInterface.loadSiswa(roles, username);
+        call.enqueue(new Callback<List<Siswa>>() {
+            @Override
+            public void onResponse(Call<List<Siswa>> call, Response<List<Siswa>> response) {
+                siswa = response.body();
+                kelasSiswa = siswa.get(0).getKelas();
+            }
+
+            @Override
+            public void onFailure(Call<List<Siswa>> call, Throwable t) {
+                Toast.makeText(getActivity(), "rp :"+
+                                t.getMessage().toString(),
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
     @Override
     public void onResume() {
         super.onResume();
-        getJadwalSiswa("1-A");
+        if (SiswaFragment.kelas == null){
+            SiswaFragment.kelas = "1-A";
+        }
+        getJadwalSiswa(SiswaFragment.kelas);
     }
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-        kelas = adapterView.getItemAtPosition(i).toString();
-        getJadwalSiswa(kelas);
-        switch (adapterView.getId()) {
-            case R.id.spnKelas:
-                kelas = adapterView.getItemAtPosition(i).toString();
-                Toast.makeText(getActivity(), "Kelas "+kelas, Toast.LENGTH_SHORT).show();
-                getJadwalSiswa(kelas);
-                break;
-            case R.id.etIDGuru:
-                mId_guru = adapterView.getItemAtPosition(i).toString();
-                Toast.makeText(getActivity(), "ID Guru "+mId_guru, Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.etKelas:
-                mKelas = adapterView.getItemAtPosition(i).toString();
-                Toast.makeText(getActivity(), "mKelas "+mKelas, Toast.LENGTH_SHORT).show();
-            default:
-                break;
+        if (role.equals("guru")) {
+            kelas = adapterView.getItemAtPosition(i).toString();
+            getJadwalSiswa(kelas);
+            switch (adapterView.getId()) {
+                case R.id.spnKelas:
+                    kelas = adapterView.getItemAtPosition(i).toString();
+//                    Toast.makeText(getActivity(), "Kelas "+kelas, Toast.LENGTH_SHORT).show();
+                    getJadwalSiswa(kelas);
+                    break;
+                case R.id.etIDGuru:
+                    mId_guru = adapterView.getItemAtPosition(i).toString();
+//                    Toast.makeText(getActivity(), "ID Guru "+mId_guru, Toast.LENGTH_SHORT).show();
+                    break;
+                case R.id.etKelas:
+                    mKelas = adapterView.getItemAtPosition(i).toString();
+//                    Toast.makeText(getActivity(), "mKelas "+mKelas, Toast.LENGTH_SHORT).show();
+                default:
+                    break;
+            }
         }
     }
 

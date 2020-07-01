@@ -24,7 +24,9 @@ import android.widget.Toast;
 import com.smk.siakad.api.ApiClient;
 import com.smk.siakad.api.ApiInterface;
 import com.smk.siakad.login.LoginActivity;
+import com.smk.siakad.model.Pengumuman;
 import com.smk.siakad.model.Siswa;
+import com.smk.siakad.siswa.HariFragment;
 import com.smk.siakad.siswa.JadwalActivity;
 import com.smk.siakad.siswa.NilaiActivity;
 import com.smk.siakad.siswa.ProfilSiswaActivity;
@@ -35,8 +37,13 @@ import java.util.List;
 public class SiswaFragment extends Fragment {
 
     private List<Siswa> siswa;
-    private TextView txtNamaUser, txtTagihan, txtNIS;
-    private String username, role;
+    private List<Pengumuman> pengumuman;
+    private TextView txtNamaUser, txtTagihan, txtNIS, txtJudulPeng, txtDeskPeng;
+    public static String username = null;
+    public static String role = null;
+    public static String kelas = null;
+
+    private ApiInterface apiInterface;
 
     private OnLogoutListener logoutListener;
 
@@ -61,6 +68,8 @@ public class SiswaFragment extends Fragment {
         txtNamaUser = view.findViewById(R.id.txtNamaUser);
         txtTagihan = view.findViewById(R.id.txtTagihan);
         txtNIS = view.findViewById(R.id.txtNIS);
+        txtJudulPeng = view.findViewById(R.id.txtPengumumanJudul);
+        txtDeskPeng = view.findViewById(R.id.txtPengumumanDesk);
         CardView cvNilai = view.findViewById(R.id.cvNilai);
         CardView cvJadwal = view.findViewById(R.id.cvJadwal);
         CardView cvProfil = view.findViewById(R.id.cvProfil);
@@ -73,6 +82,7 @@ public class SiswaFragment extends Fragment {
         RelativeLayout btnLogout = view.findViewById(R.id.btnLogout);
         TextView btnProfil = view.findViewById(R.id.btnProfil);
 
+        apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
         role = LoginActivity.prefConfig.readRole();
         username = LoginActivity.prefConfig.readID();
 
@@ -86,7 +96,9 @@ public class SiswaFragment extends Fragment {
         cvProfil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getActivity(), ProfilSiswaActivity.class));
+                Intent intent = new Intent(getActivity(), ProfilSiswaActivity.class);
+                intent.putExtra("key", "profil");
+                startActivity(intent);
             }
         });
 
@@ -151,15 +163,43 @@ public class SiswaFragment extends Fragment {
             cvJadwal.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    startActivity(new Intent(getActivity(), JadwalSiswaActivity.class));
+                    Intent intent = new Intent(getActivity(), JadwalSiswaActivity.class);
+                    intent.putExtra("kelas", kelas);
+                    startActivity(intent);
+                }
+            });
+
+            cvLogout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    startActivity(new Intent(getActivity(), DaftarUlangActivity.class));
                 }
             });
         }
         return view;
     }
 
+    private void getPengumuman() {
+        Call<List<Pengumuman>> call = apiInterface.getPeng(role);
+        call.enqueue(new Callback<List<Pengumuman>>() {
+            @Override
+            public void onResponse(Call<List<Pengumuman>> call, Response<List<Pengumuman>> response) {
+                pengumuman = response.body();
+                txtJudulPeng.setText(pengumuman.get(0).getJudul());
+                txtDeskPeng.setText(pengumuman.get(0).getDeskripsi());
+            }
+
+            @Override
+            public void onFailure(Call<List<Pengumuman>> call, Throwable t) {
+                Toast.makeText(getActivity(), "rp :"+
+                                t.getMessage().toString(),
+                        Toast.LENGTH_SHORT).show();
+                System.out.println("okeh"+t);
+            }
+        });
+    }
+
     public void getSiswa() {
-        ApiInterface apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
         role = LoginActivity.prefConfig.readRole();
         username = LoginActivity.prefConfig.readID();
         Call<List<Siswa>> call =  apiInterface.loadSiswa(role, username);
@@ -171,6 +211,7 @@ public class SiswaFragment extends Fragment {
                     txtNamaUser.setText(siswa.get(0).getNama());
                     txtTagihan.setText(siswa.get(0).getTagihan());
                     txtNIS.setText(siswa.get(0).getId_siswa());
+                    kelas = siswa.get(0).getKelas();
                 } else {
                     txtNamaUser.setText(siswa.get(0).getNama());
                     txtNIS.setText(siswa.get(0).getId_guru());
@@ -190,6 +231,7 @@ public class SiswaFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+        getPengumuman();
         getSiswa();
     }
 

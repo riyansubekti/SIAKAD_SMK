@@ -74,7 +74,6 @@ public class JadwalSiswaActivity extends AppCompatActivity implements AdapterVie
         Spinner spinner = dialog.findViewById(R.id.etKelas);
         Spinner spinner1 = dialog.findViewById(R.id.etIDGuru);
         Button btnSave = dialog.findViewById(R.id.btnSaveJadwal);
-        Button btnsHapus = dialog.findViewById(R.id.btnDeleteJadwal);
         etMapel = dialog.findViewById(R.id.etMapel);
         etJurusan = dialog.findViewById(R.id.etJurusan);
         etWaktu = dialog.findViewById(R.id.etWaktu);

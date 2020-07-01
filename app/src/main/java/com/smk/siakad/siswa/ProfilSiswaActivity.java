@@ -92,6 +92,11 @@ public class ProfilSiswaActivity extends AppCompatActivity {
             getSiswa();
             editMode();
         } else if (key.equals("profil")){
+            btnSave.setVisibility(View.GONE);
+            getSiswa();
+        }else {
+            Toast.makeText(this, "PROFIL SISWA", Toast.LENGTH_SHORT).show();
+            btnSave.setVisibility(View.GONE);
             getSiswa();
         }
 

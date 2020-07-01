@@ -43,6 +43,7 @@
             android:layout_below="@id/layoutPicture"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
             app:cardElevation="@dimen/cardview_default_elevation"
             app:cardCornerRadius="0dp">
             <LinearLayout
@@ -86,33 +87,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
                 </com.google.android.material.textfield.TextInputLayout>
-
-                <RadioGroup
-                    android:layout_marginTop="15dp"
-                    android:paddingHorizontal="3dp"
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <TextView
-                        android:layout_weight="1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="sans-serif-light"
-                        android:textSize="16dp"
-                        android:text="Jenis Kelamin : "/>
-                    <RadioButton
-                        android:layout_weight="1"
-                        android:layout_width="wrap_content"
-                        android:enabled="false"
-                        android:layout_height="wrap_content"
-                        android:text="Laki - Laki"/>
-                    <RadioButton
-                        android:layout_weight="1"
-                        android:text="Perempuan"
-                        android:enabled="false"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-                </RadioGroup>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
@@ -203,7 +177,6 @@
             android:layout_height="wrap_content"
             android:text="Save Data"
             android:layout_below="@+id/layoutName"
-            android:layout_marginTop="15dp"
             android:layout_marginBottom="20dp"
             android:layout_centerHorizontal="true"
             android:background="@color/colorBackground1"

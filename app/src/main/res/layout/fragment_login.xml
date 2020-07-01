@@ -4,40 +4,89 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".login.LoginFragment"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_bold"
+            android:text="SIAKAD APP"
+            android:textColor="#5E5E5E"
+            android:textSize="24dp" />
+
+        <View
+            android:layout_width="40dp"
+            android:layout_height="6dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="8dp"
+            android:background="@drawable/bg_view">
+
+        </View>
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_regular"
+        android:text="SMK Global Informatika"
+        android:textColor="#5E5E5E"
+        android:textSize="18dp" />
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:textSize="18sp"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="25dp"
+        android:fontFamily="@font/roboto_bold"
+        android:text="LOGIN PAGE"
         android:textAlignment="center"
-        android:textStyle="bold"
-        android:text="Login Page"/>
+        android:textColor="#5E5E5E"
+        android:textSize="24dp"/>
 
-    <EditText
-        android:id="@+id/txtUID"
-        android:layout_marginTop="35dp"
-        android:layout_gravity="center"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:hint="Username"/>
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/txtUID"
+            android:hint="NIS"
+            android:fontFamily="sans-serif-light"
+            android:inputType="textPersonName|textCapWords"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="50dp"/>
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <EditText
-        android:id="@+id/txtPASS"
-        android:layout_marginTop="20dp"
-        android:layout_gravity="center"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:hint="Password"/>
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/txtPASS"
+            android:hint="PASSWORD"
+            android:fontFamily="sans-serif-light"
+            android:inputType="textPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="50dp"/>
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/btnLogin"
-        android:layout_marginTop="20dp"
-        android:layout_gravity="center"
-        android:layout_width="200dp"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:text="SUBMIT"/>
+        android:text="LOGIN"
+        android:layout_marginTop="20dp"
+        android:background="@color/colorBackground1"
+        android:textColor="@android:color/white"
+        android:fontFamily="@font/roboto_medium"
+        android:textSize="16dp"
+        android:layout_gravity="center"/>
 
 </LinearLayout>

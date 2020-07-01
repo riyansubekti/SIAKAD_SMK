@@ -66,31 +66,27 @@ public class NilaiActivity extends AppCompatActivity implements AdapterView.OnIt
         Intent intent = getIntent();
         if (role.equals("guru")) {
             username = intent.getStringExtra("username");
+            listener = new AdapterNilaiSiswa.RecyclerViewClickListener() {
+                @Override
+                public void onRowClick(View view, int position) {
+                    dialogNilai("update", position);
+                }
+            };
+            fabNilaiInsert.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    dialogNilai("insert",0);
+                }
+            });
+        }else {
+            fabNilaiInsert.setVisibility(View.GONE);
         }
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-        listener = new AdapterNilaiSiswa.RecyclerViewClickListener() {
-            @Override
-            public void onRowClick(View view, int position) {
-                dialogNilai("update", position);
-            }
-        };
-
-        fabNilaiInsert.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dialogNilai("insert",0);
-            }
-        });
-
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (search.equals("2")) {
-                    // Get All Data
-                    getNilai();
-                }
                 adapterNilaiSiswa.getFilter().filter(search);
             }
         });
@@ -158,7 +154,6 @@ public class NilaiActivity extends AppCompatActivity implements AdapterView.OnIt
         }else{
             Toast.makeText(this, "ERORR Tidak ada KEY", Toast.LENGTH_SHORT).show();
         }
-        System.out.println("okeh"+nilaiList);
     }
 
     private void updateNilai(String id_nilai, String id_siswa) {
@@ -247,7 +242,6 @@ public class NilaiActivity extends AppCompatActivity implements AdapterView.OnIt
         String uas = etUAS.getText().toString();
         String kkm = etKKM.getText().toString();
         String semester = etSemester.getText().toString();
-        System.out.println("okeh"+nilaiList);
 
         Call<Nilai> call = apiInterface.insertNilai(key, id_mapel, username, tugas, uts, uas, kkm, semester);
         call.enqueue(new Callback<Nilai>() {

@@ -156,6 +156,7 @@
             android:paddingVertical="8dp">
 
             <TextView
+                android:id="@+id/txtPengumumanJudul"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto_medium"
@@ -164,6 +165,7 @@
                 android:textSize="16dp"/>
 
             <TextView
+                android:id="@+id/txtPengumumanDesk"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto_regular"
