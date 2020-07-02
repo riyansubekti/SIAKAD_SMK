@@ -171,6 +171,7 @@ public class ProfilSiswaActivity extends AppCompatActivity {
                     txtKelas.setVisibility(View.GONE);
                     txtJurusan.setVisibility(View.GONE);
                     txtTagihan.setVisibility(View.GONE);
+                    txtNIS.setHint("ID GURU");
                     btnSave.setVisibility(View.GONE);
                 }
                 String password = siswa.get(0).getPassword();

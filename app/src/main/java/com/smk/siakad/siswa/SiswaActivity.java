@@ -8,7 +8,9 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -33,7 +35,7 @@ public class SiswaActivity extends AppCompatActivity {
     private AdapterSiswa adapterSiswa;
     private List<Siswa> siswa;
     private FloatingActionButton fabInsert;
-    private String menu;
+    public static String menu;
     private TextView txtJudul;
     ApiInterface apiInterface;
     AdapterSiswa.RecyclerViewClickListener listener;
@@ -81,17 +83,35 @@ public class SiswaActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onDeleteClick(View view, int position) {
+            public void onDeleteClick(View view, final int position) {
                 if (menu.equals("nilai")) {
                     Intent intent = new Intent(SiswaActivity.this, NilaiActivity.class);
                     intent.putExtra("username", siswa.get(position).getId_siswa());
                     Toast.makeText(SiswaActivity.this, "Klik data untuk menghapusnya...", Toast.LENGTH_SHORT).show();
                     startActivity(intent);
                 }else{
-                    String nis = siswa.get(position).getId_siswa();
-                    String key = "delete";
-                    String foto = siswa.get(position).getFoto();
-                    deleteSiswa(key, nis, foto);
+                    AlertDialog.Builder validasi = new AlertDialog.Builder(SiswaActivity.this);
+                    validasi.setMessage("Apakah anda ingin menghapus data ini ?").setCancelable(false)
+                            .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    String nis = siswa.get(position).getId_siswa();
+                                    String key = "delete";
+                                    String foto = siswa.get(position).getFoto();
+                                    deleteSiswa(key, nis, foto);
+                                }
+                            })
+                            .setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    dialogInterface.cancel();
+                                }
+                            });
+
+                    AlertDialog alertDialog = validasi.create();
+                    alertDialog.setTitle("Validasi Hapus Data");
+                    alertDialog.show();
+
                 }
 
             }

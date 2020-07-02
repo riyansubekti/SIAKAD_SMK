@@ -27,11 +27,12 @@ public class AdapterJadwalSiswa extends RecyclerView.Adapter<AdapterJadwalSiswa.
 
     public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         private RecyclerViewClickListener mListener;
-        private TextView mapel, waktu, guru;
+        private TextView idj, mapel, waktu, guru;
         private LinearLayout mRowContainer;
 
         MyViewHolder(View itemView, RecyclerViewClickListener listener) {
             super(itemView);
+            idj = itemView.findViewById(R.id.txtJadwalID);
             mapel = itemView.findViewById(R.id.txtNamaJadwal);
             waktu = itemView.findViewById(R.id.txtWaktuJadwal);
             guru = itemView.findViewById(R.id.txtGuruJadwal);
@@ -73,6 +74,7 @@ public class AdapterJadwalSiswa extends RecyclerView.Adapter<AdapterJadwalSiswa.
 
     @Override
     public void onBindViewHolder(@NonNull AdapterJadwalSiswa.MyViewHolder holder, int position) {
+        holder.idj.setText(jadwal.get(position).getId_mapel());
         holder.mapel.setText(jadwal.get(position).getNama_mapel());
         holder.waktu.setText(jadwal.get(position).getWaktu_pelajaran());
         holder.guru.setText(jadwal.get(position).getNama());

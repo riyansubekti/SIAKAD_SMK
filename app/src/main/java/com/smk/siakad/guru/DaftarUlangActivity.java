@@ -14,8 +14,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.smk.siakad.R;
@@ -24,11 +27,17 @@ import com.smk.siakad.api.ApiClient;
 import com.smk.siakad.api.ApiInterface;
 import com.smk.siakad.model.Siswa;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class DaftarUlangActivity extends AppCompatActivity {
     private NotificationManagerCompat notificationManagerCompat;
     private EditText etNis, etKelas, etTagihan, etReminder;
     private Button btnInput;
     private ApiInterface apiInterface;
+    private Spinner spnNis;
+    private List<Siswa> siswa;
+    List<String> listSpinner = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +56,25 @@ public class DaftarUlangActivity extends AppCompatActivity {
         etTagihan = findViewById(R.id.etDUTagihan);
         etReminder = findViewById(R.id.etReminder);
         btnInput = findViewById(R.id.btnDUInput);
+        spnNis = findViewById(R.id.spnDUNis);
         apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
+
+        spinnerNis();
+        spnNis.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                String selectNis = adapterView.getItemAtPosition(i).toString();
+                Toast.makeText(DaftarUlangActivity.this, "Anda memilih NIS : "+selectNis, Toast.LENGTH_SHORT).show();
+                etKelas.setText(siswa.get(i).getKelas());
+                etTagihan.setText(siswa.get(i).getTagihan());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
         btnInput.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -68,6 +95,27 @@ public class DaftarUlangActivity extends AppCompatActivity {
         long timeAtButtonClick = System.currentTimeMillis();
         long timeSecondsInMillis = 3600 * 1000 * jam;
         alarmManager.set(AlarmManager.RTC_WAKEUP, timeAtButtonClick + timeSecondsInMillis, pendingIntent);
+    }
+
+    private void spinnerNis() {
+        Call<List<Siswa>> call = apiInterface.getSiswa();
+        call.enqueue(new Callback<List<Siswa>>() {
+            @Override
+            public void onResponse(Call<List<Siswa>> call, Response<List<Siswa>> response) {
+                siswa = response.body();
+                for (int i = 0; i < siswa.size(); i++) {
+                    listSpinner.add(siswa.get(i).getId_siswa());
+                }
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(DaftarUlangActivity.this, android.R.layout.simple_spinner_item, listSpinner);
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                spnNis.setAdapter(adapter);
+            }
+
+            @Override
+            public void onFailure(Call<List<Siswa>> call, Throwable t) {
+                Toast.makeText(DaftarUlangActivity.this, "Error Spinner...", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     public void insertData() {

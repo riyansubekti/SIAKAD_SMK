@@ -46,6 +46,7 @@ public class HariFragment extends Fragment implements AdapterView.OnItemSelected
     private RecyclerView recyclerView;
     private Spinner spnKelas;
     private EditText etMapel, etJurusan, etWaktu, etHari;
+    private TextView txtDialogJdl;
 
     public HariFragment(String getHari) {
         // Required empty public constructor
@@ -76,6 +77,7 @@ public class HariFragment extends Fragment implements AdapterView.OnItemSelected
                     gWaktu = adapterJadwalSiswa.jadwal.get(position).getWaktu_pelajaran();
                     gHari = adapterJadwalSiswa.jadwal.get(position).getHari();
                     dialogJadwal(position, gId_mapel, gMapel, gJurusan, gWaktu, gHari);
+                    txtDialogJdl.setText("UPDATE JADWAL SISWA");
 //                    Toast.makeText(getActivity(), "posisi "+position, Toast.LENGTH_SHORT).show();
 //                    Toast.makeText(getActivity(), "ID1 "+jadwalSiswaList.get(position).getId_mapel(), Toast.LENGTH_SHORT).show();
 //                    Toast.makeText(getActivity(), "ID2 "+adapterJadwalSiswa.jadwal.get(position).getId_mapel(), Toast.LENGTH_SHORT).show();
@@ -113,6 +115,7 @@ public class HariFragment extends Fragment implements AdapterView.OnItemSelected
         etJurusan = dialog.findViewById(R.id.etJurusan);
         etWaktu = dialog.findViewById(R.id.etWaktu);
         etHari = dialog.findViewById(R.id.etHari);
+        txtDialogJdl = dialog.findViewById(R.id.txtJadwalJudul);
         apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
 
         id_mapel = mId_mapel;

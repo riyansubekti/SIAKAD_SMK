@@ -12,7 +12,7 @@
         style="@style/Divider" />
 
     <TextView
-        android:id="@+id/txtNilaiJudul"
+        android:id="@+id/txtJadwalJudul"
         android:layout_below="@+id/viewDua"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -25,7 +25,7 @@
         android:textSize="20sp"/>
     <View
         android:id="@+id/viewSatu"
-        android:layout_below="@id/txtNilaiJudul"
+        android:layout_below="@id/txtJadwalJudul"
         android:layout_marginTop="3dp"
         style="@style/Divider"/>
 

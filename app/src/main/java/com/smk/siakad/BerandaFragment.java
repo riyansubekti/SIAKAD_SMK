@@ -1,7 +1,9 @@
 package com.smk.siakad;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -114,7 +116,24 @@ public class BerandaFragment extends Fragment {
         cvLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                logoutListener.logoutPerformed();
+                AlertDialog.Builder validasi = new AlertDialog.Builder(getActivity());
+                validasi.setMessage("Apakah anda yakin ingin logout ?").setCancelable(false)
+                        .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                logoutListener.logoutPerformed();
+                            }
+                        })
+                        .setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                dialogInterface.cancel();
+                            }
+                        });
+
+                AlertDialog alertDialog = validasi.create();
+                alertDialog.setTitle("Validasi Logout");
+                alertDialog.show();
             }
         });
 
@@ -132,7 +151,24 @@ public class BerandaFragment extends Fragment {
             btnLogout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    logoutListener.logoutPerformed();
+                    AlertDialog.Builder validasi = new AlertDialog.Builder(getActivity());
+                    validasi.setMessage("Apakah anda yakin ingin logout ?").setCancelable(false)
+                            .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    logoutListener.logoutPerformed();
+                                }
+                            })
+                            .setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    dialogInterface.cancel();
+                                }
+                            });
+
+                    AlertDialog alertDialog = validasi.create();
+                    alertDialog.setTitle("Validasi Logout");
+                    alertDialog.show();
                 }
             });
 

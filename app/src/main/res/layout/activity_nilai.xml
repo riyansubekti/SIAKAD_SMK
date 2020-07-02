@@ -79,7 +79,7 @@
             <TextView
                 android:id="@+id/txtNamaMapel"
                 android:layout_marginHorizontal="2dp"
-                android:layout_width="100dp"
+                android:layout_width="70dp"
                 android:layout_height="wrap_content"
                 android:text="Mapel"
                 android:maxLines="3"/>
@@ -125,6 +125,14 @@
                 android:layout_height="wrap_content"
                 android:text="KKM"
                 android:maxLines="2"
+                android:textAlignment="center"/>
+
+            <TextView
+                android:id="@+id/txtNilaiAction"
+                android:layout_marginHorizontal="2dp"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:text="Action"
                 android:textAlignment="center"/>
         </LinearLayout>
 

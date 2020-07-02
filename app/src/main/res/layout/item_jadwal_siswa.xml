@@ -9,9 +9,17 @@
     android:gravity="center">
 
     <TextView
+        android:id="@+id/txtJadwalID"
+        android:layout_width="30dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="2dp"
+        android:textAlignment="center"
+        android:text="IDJ"/>
+
+    <TextView
         android:id="@+id/txtNamaJadwal"
-        android:layout_marginHorizontal="5dp"
-        android:layout_width="115dp"
+        android:layout_marginHorizontal="2dp"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:text="Matematika"
         android:maxLines="3"/>
@@ -21,17 +29,17 @@
         android:layout_width="90dp"
         android:layout_height="wrap_content"
         android:text="07:00 - 10:00"
-        android:layout_marginHorizontal="5dp"
+        android:layout_marginHorizontal="2dp"
         android:maxLines="2"
         android:textAlignment="center"/>
 
     <TextView
         android:id="@+id/txtGuruJadwal"
-        android:layout_width="105dp"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:text="Lika (MaxLine3)i"
         android:maxLines="3"
-        android:layout_marginHorizontal="5dp"
+        android:layout_marginHorizontal="2dp"
         android:textAlignment="center"/>
 
 </LinearLayout>

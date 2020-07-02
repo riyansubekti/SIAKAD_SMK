@@ -92,6 +92,20 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <EditText
+                        android:id="@+id/txtProfilAlamat"
+                        android:hint="Alamat"
+                        android:maxLines="3"
+                        android:enabled="false"
+                        android:fontFamily="sans-serif-light"
+                        android:inputType="textPersonName|textCapWords"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <EditText
                         android:id="@+id/txtProfilJurusan"
                         android:hint="Jurusan"
                         android:enabled="false"
@@ -107,20 +121,6 @@
                     <EditText
                         android:id="@+id/txtProfilKelas"
                         android:hint="Kelas"
-                        android:enabled="false"
-                        android:fontFamily="sans-serif-light"
-                        android:inputType="textPersonName|textCapWords"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <EditText
-                        android:id="@+id/txtProfilAlamat"
-                        android:hint="Alamat"
-                        android:maxLines="3"
                         android:enabled="false"
                         android:fontFamily="sans-serif-light"
                         android:inputType="textPersonName|textCapWords"

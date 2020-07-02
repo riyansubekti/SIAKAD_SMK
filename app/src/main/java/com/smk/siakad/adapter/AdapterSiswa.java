@@ -16,6 +16,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.smk.siakad.R;
 import com.smk.siakad.model.Siswa;
+import com.smk.siakad.siswa.SiswaActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,6 +36,7 @@ public class AdapterSiswa extends RecyclerView.Adapter<AdapterSiswa.MyViewHolder
         private ImageView mPicture, btnDelete;
         private TextView mID, mNama;
         private RelativeLayout mRowContainer;
+        private String menu;
 
         MyViewHolder(View itemView, RecyclerViewClickListener listener) {
             super(itemView);
@@ -43,6 +45,7 @@ public class AdapterSiswa extends RecyclerView.Adapter<AdapterSiswa.MyViewHolder
             mNama = itemView.findViewById(R.id.txtNama);
             mRowContainer = itemView.findViewById(R.id.row_container);
             btnDelete = itemView.findViewById(R.id.btnDelete);
+            menu = SiswaActivity.menu;
 
             mListener = listener;
             mRowContainer.setOnClickListener(this);
@@ -87,6 +90,9 @@ public class AdapterSiswa extends RecyclerView.Adapter<AdapterSiswa.MyViewHolder
         public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
             holder.mID.setText(siswa.get(position).getId_siswa());
             holder.mNama.setText(siswa.get(position).getNama());
+            if (holder.menu.equals("nilai")) {
+                holder.btnDelete.setVisibility(View.GONE);
+            }
 
             RequestOptions requestOptions = new RequestOptions();
             requestOptions.skipMemoryCache(true);

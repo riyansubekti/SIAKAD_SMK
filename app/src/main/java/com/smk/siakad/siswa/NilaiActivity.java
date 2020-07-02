@@ -8,8 +8,10 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -47,6 +49,7 @@ public class NilaiActivity extends AppCompatActivity implements AdapterView.OnIt
     private Dialog dialog;
     private FloatingActionButton fabNilaiInsert;
     private EditText etMapel, etTugas, etUTS, etUAS, etKKM, etSemester;
+    private TextView txtNilaiAction;
     ApiInterface apiInterface;
     AdapterNilaiSiswa.RecyclerViewClickListener listener;
     ProgressBar progressBar;
@@ -67,6 +70,7 @@ public class NilaiActivity extends AppCompatActivity implements AdapterView.OnIt
         recyclerView = findViewById(R.id.rcNilai);
         btnSearch = findViewById(R.id.btnSearch);
         fabNilaiInsert = findViewById(R.id.fabNilaiInsert);
+        txtNilaiAction = findViewById(R.id.txtNilaiAction);
 
         role = LoginActivity.prefConfig.readRole();
         username = LoginActivity.prefConfig.readID();
@@ -78,6 +82,32 @@ public class NilaiActivity extends AppCompatActivity implements AdapterView.OnIt
                 public void onRowClick(View view, int position) {
                     dialogNilai("update", position);
                 }
+                @Override
+                public void onEditClick(View view, int position) {
+                    dialogNilai("update", position);
+                }
+
+                @Override
+                public void onDeleteClick(View view, final int position) {
+                    AlertDialog.Builder validasi = new AlertDialog.Builder(NilaiActivity.this);
+                    validasi.setMessage("Apakah anda ingin menghapus data ini ?").setCancelable(false)
+                            .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    deleteNilai("delete", nilaiList.get(position).getId_nilai());
+                                }
+                            })
+                            .setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    dialogInterface.cancel();
+                                }
+                            });
+
+                    AlertDialog alertDialog = validasi.create();
+                    alertDialog.setTitle("Validasi Hapus Data");
+                    alertDialog.show();
+                }
             };
             fabNilaiInsert.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -87,6 +117,7 @@ public class NilaiActivity extends AppCompatActivity implements AdapterView.OnIt
             });
         }else {
             fabNilaiInsert.setVisibility(View.GONE);
+            txtNilaiAction.setVisibility(View.GONE);
         }
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
@@ -138,6 +169,7 @@ public class NilaiActivity extends AppCompatActivity implements AdapterView.OnIt
             etUAS.setText(uas);
             etKKM.setText(kkm);
             etSemester.setText(semester);
+            btnDelete.setText("Kembali");
             btnDelete.setVisibility(View.VISIBLE);
             btnSave.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -148,7 +180,7 @@ public class NilaiActivity extends AppCompatActivity implements AdapterView.OnIt
             btnDelete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    deleteNilai("delete", id_nilai);
+                    dialog.dismiss();
                 }
             });
         }else if (key.equals("insert")) {

@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -34,6 +35,7 @@ public class JadwalSiswaActivity extends AppCompatActivity implements AdapterVie
 
     private String kelas, id_guru, role;
     private EditText etMapel, etJurusan, etWaktu, etHari;
+    private TextView txtDialogJdl;
     ApiInterface apiInterface;
 
     @Override
@@ -79,6 +81,7 @@ public class JadwalSiswaActivity extends AppCompatActivity implements AdapterVie
         etJurusan = dialog.findViewById(R.id.etJurusan);
         etWaktu = dialog.findViewById(R.id.etWaktu);
         etHari = dialog.findViewById(R.id.etHari);
+        txtDialogJdl = dialog.findViewById(R.id.txtJadwalJudul);
         apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
 
         btnSave.setOnClickListener(new View.OnClickListener() {
