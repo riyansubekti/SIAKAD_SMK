@@ -32,11 +32,12 @@ import java.util.List;
 
 public class DaftarUlangActivity extends AppCompatActivity {
     private NotificationManagerCompat notificationManagerCompat;
-    private EditText etNis, etKelas, etTagihan, etReminder;
+    private EditText etKelas, etTagihan, etReminder;
     private Button btnInput;
     private ApiInterface apiInterface;
     private Spinner spnNis;
     private List<Siswa> siswa;
+    private String nis;
     List<String> listSpinner = new ArrayList<String>();
 
     @Override
@@ -51,7 +52,6 @@ public class DaftarUlangActivity extends AppCompatActivity {
         }
 
         notificationManagerCompat = NotificationManagerCompat.from(this);
-        etNis = findViewById(R.id.etDUNis);
         etKelas = findViewById(R.id.etDUKelas);
         etTagihan = findViewById(R.id.etDUTagihan);
         etReminder = findViewById(R.id.etReminder);
@@ -63,8 +63,8 @@ public class DaftarUlangActivity extends AppCompatActivity {
         spnNis.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                String selectNis = adapterView.getItemAtPosition(i).toString();
-                Toast.makeText(DaftarUlangActivity.this, "Anda memilih NIS : "+selectNis, Toast.LENGTH_SHORT).show();
+                nis = adapterView.getItemAtPosition(i).toString();
+                Toast.makeText(DaftarUlangActivity.this, "Anda memilih NIS : "+nis, Toast.LENGTH_SHORT).show();
                 etKelas.setText(siswa.get(i).getKelas());
                 etTagihan.setText(siswa.get(i).getTagihan());
             }
@@ -123,7 +123,6 @@ public class DaftarUlangActivity extends AppCompatActivity {
         progressDialog.setMessage("Saving...");
         progressDialog.show();
 
-        String nis = etNis.getText().toString();
         String kelas = etKelas.getText().toString();
         String tagihan = etTagihan.getText().toString();
 

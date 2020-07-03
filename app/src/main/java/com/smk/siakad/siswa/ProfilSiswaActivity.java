@@ -230,6 +230,7 @@ public class ProfilSiswaActivity extends AppCompatActivity {
             foto = "";
         } else {
             foto = getStringImage(bitmap);
+            System.out.println("okeh"+bitmap);
         }
 
         Call<Siswa> call =  apiInterface.insertSiswa(key,nis,
@@ -259,6 +260,7 @@ public class ProfilSiswaActivity extends AppCompatActivity {
                 Toast.makeText(ProfilSiswaActivity.this, "rp :"+
                                 t.getMessage().toString(),
                         Toast.LENGTH_SHORT).show();
+                System.out.println("okeh1 "+t);
             }
         });
 

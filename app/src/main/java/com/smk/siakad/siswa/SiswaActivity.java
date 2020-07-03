@@ -61,6 +61,7 @@ public class SiswaActivity extends AppCompatActivity {
         menu = intent.getStringExtra("menu");
         if (menu.equals("nilai")) {
             fabInsert.setVisibility(View.GONE);
+            getSupportActionBar().setTitle("Daftar Nilai");
             txtJudul.setText("Klik untuk mengubah data nilai siswa");
         }
 
@@ -117,8 +118,6 @@ public class SiswaActivity extends AppCompatActivity {
             }
         };
 
-
-
         fabInsert.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -127,7 +126,6 @@ public class SiswaActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
     }
 
     private void deleteSiswa(String key, final String nis, String foto) {
